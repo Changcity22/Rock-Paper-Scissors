@@ -1,3 +1,5 @@
+console.log("Challenge the computer to a best of 5, rock paper scissor game!")
+
 function computerPlay () {
    //goal: the function shall randomly return one of three outcomes:rock, paper or scissors
    //plan: no interface at this time. no input. output: see above.
@@ -54,7 +56,7 @@ function newRound (computerSelection, playerSelection) {
             break;
         case "rock":
             playerSelectionNumber = 1;
-            break;
+            break;            
     }
             
     switch (computerSelection) {
@@ -72,19 +74,43 @@ function newRound (computerSelection, playerSelection) {
     let result = computerSelectionNumber - playerSelectionNumber;
 
     switch (result) {
-        case (1 || -2):
-            return `You lose! ${computerSelection} beats ${playerSelection}!`;
+        case 1:
+        case -2:
+            return [`You lose! ${computerSelection} beats ${playerSelection}!`, result];
         case 0:
-            return `It's a draw!`;
-        default:
-            return `You win! ${playerSelection} beats ${computerSelection}!`;
+            return [`It's a draw!`, result];
+        case 2:
+        case -1:
+            return [`You win! ${playerSelection} beats ${computerSelection}!`, result];
     }
-    
+}
 
 
+function game() {
+    //pseudocode:
+    //loop
+        //call newRound, return result, counter + 1 if won
+    //loop ends after 5 iteration
+    //at the end, reports score and winner
 
+    let counter = 0;
 
+    for (let i = 0; i < 5; i++) {
+        
+        let playerSelection = prompt("What's your hand?", "Rock, Paper or Scissor?");
+        
+        let result = newRound(computerPlay(), playerSelection);
 
+        console.log(result[0]);
 
+        if (result[1] === (-1 || 2)) {
+            counter ++;
+        }
+        console.log(counter);
+     
+    }
+
+    return (counter >= 3 ? `You beat the computer! Your final score is ${counter}` : `You lost to the computer! Your final score is ${counter}`);
 
 }
+
