@@ -1,5 +1,35 @@
 console.log("Challenge the computer to a best of 5, rock paper scissor game!")
 
+
+/*
+input: player selection
+output each round: point count & winner
+output final: final winner
+
+add event listener to each button 
+
+
+*/
+
+
+let playerCounter = 0;
+let computerCounter = 0;
+
+const buttons = document.querySelectorAll('button');
+const yourScore = document.querySelector('#your-score');
+const computerScore = document.querySelector('#computer-score');
+const finalResult = document.querySelector('#final-result');
+
+
+
+buttons.forEach((button) => {
+    button.addEventListener('click', newRound);
+})
+
+
+
+
+
 function computerPlay () {
    //goal: the function shall randomly return one of three outcomes:rock, paper or scissors
    //plan: no interface at this time. no input. output: see above.
@@ -30,7 +60,7 @@ function computerPlay () {
 
 }
 
-function newRound (computerSelection, playerSelection) {
+function newRound (playerSelection) {
     //problem: To play a single round of game. A successful round will
     //compare player and computer hand and return the correct winner
     
@@ -43,11 +73,12 @@ function newRound (computerSelection, playerSelection) {
     //i.e. if difference = (1 or -2): return player victory string
     // else: return player loss string
 
+    
     let playerSelectionNumber; 
     let computerSelectionNumber;
+    let computerSelection = computerPlay();
 
-
-    switch (playerSelection.toLowerCase()) {
+    switch (this.id) {
         case "scissor":
             playerSelectionNumber = 3;
             break;
@@ -73,18 +104,35 @@ function newRound (computerSelection, playerSelection) {
 
     let result = computerSelectionNumber - playerSelectionNumber;
 
+    
     switch (result) {
         case 1:
         case -2:
-            return [`You lose! ${computerSelection} beats ${playerSelection}!`, result];
+            computerCounter ++;
+            computerScore.textContent = `Computer score: ${computerCounter}`;
+            finalResult.textContent = `${computerSelection} beats ${this.id}! Computer wins!`;
+            break;
         case 0:
-            return [`It's a draw!`, result];
+            finalResult.textContent = `It's a draw!`;
+            break;
         case 2:
         case -1:
-            return [`You win! ${playerSelection} beats ${computerSelection}!`, result];
+            playerCounter ++;
+            yourScore.textContent = `Your score: ${playerCounter}`;
+            finalResult.textContent = `${computerSelection} loses to ${this.id} ! You win!`;
+            break;
     }
+
+
+
+
 }
 
+
+
+
+
+/*
 
 function game() {
     //pseudocode:
@@ -114,3 +162,4 @@ function game() {
 
 }
 
+*/
