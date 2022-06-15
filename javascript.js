@@ -104,25 +104,29 @@ function newRound (playerSelection) {
 
     let result = computerSelectionNumber - playerSelectionNumber;
 
-    
-    switch (result) {
-        case 1:
-        case -2:
-            computerCounter ++;
-            computerScore.textContent = `Computer score: ${computerCounter}`;
-            finalResult.textContent = `${computerSelection} beats ${this.id}! Computer wins!`;
-            break;
-        case 0:
-            finalResult.textContent = `It's a draw!`;
-            break;
-        case 2:
-        case -1:
-            playerCounter ++;
-            yourScore.textContent = `Your score: ${playerCounter}`;
-            finalResult.textContent = `${computerSelection} loses to ${this.id} ! You win!`;
-            break;
+    if (playerCounter <5 && computerCounter <5) {
+        switch (result) {
+            case 1:
+            case -2:
+                computerCounter ++;
+                computerScore.textContent = `Computer score: ${computerCounter}`;
+                finalResult.textContent = `${computerSelection} beats ${this.id}! Computer wins!`;
+                break;
+            case 0:
+                finalResult.textContent = `It's a draw!`;
+                break;
+            case 2:
+            case -1:
+                playerCounter ++;
+                yourScore.textContent = `Your score: ${playerCounter}`;
+                finalResult.textContent = `${computerSelection} loses to ${this.id} ! You win!`;
+                break;
+        }
     }
-
+    else {
+        computerScore = 5 ? finalResult.textContent = "Computer scored 5 points. Computer victory!" : 
+                finalResult.textContent = "You scored 5 points, Your victory!";
+    }
 
 
 
